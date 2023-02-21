@@ -2,9 +2,11 @@ name: Lijing's Personal Website GitHub Actions
 run-name: ${{ github.actor }} is updating Lijing's Personal Website 🚀
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - master
+env:
+  GIT_USER: shuishuixiong
+  GIT_EMAIL: liulijing0422@gmail.com
 jobs:
   Deploy-Website:
     runs-on: ubuntu-latest
@@ -23,8 +25,17 @@ jobs:
           node-version: '18.x'
       - name: Install dependencies
         run: npm install
-      - run: git config --global user.email "liulijing0422@gmail.com"
-      - run: git config --global user.name "shuishuixiong"
+      - name: Configuration Environment
+        env:
+          HEXO_DEPLOY_PRIVATE: ${{secrets.HEXO_DEPLOY_PRIVATE}}
+        run: |
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          mkdir -p ~/.ssh/
+          echo "$HEXO_DEPLOY_PRIVATE" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.name $GIT_USER
+          git config --global user.email $GIT_EMAIL
       - name: Hexo Deployment
         run: npm run deploy
       - run: echo "🍏 This job's status is ${{ job.status }}."
