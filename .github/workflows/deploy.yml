@@ -18,6 +18,8 @@ jobs:
           node-version: '18.x'
       - name: Install dependencies
         run: npm install
+      - run: git config --global user.email "liulijing0422@gmail.com"
+      - run: git config --global user.name "shuishuixiong"
       - name: Hexo Deployment
         run: npm run deploy
       - run: echo "🍏 This job's status is ${{ job.status }}."
