@@ -2,7 +2,7 @@ name: Lijing's Personal Website GitHub Actions
 run-name: ${{ github.actor }} is updating Lijing's Personal Website 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Deploy-Website:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
