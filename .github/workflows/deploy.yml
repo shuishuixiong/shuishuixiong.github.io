@@ -19,6 +19,5 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Hexo Deployment
-        run: |
-          hexo cl; hexo g; hexo d;
+        run: npm run deploy
       - run: echo "🍏 This job's status is ${{ job.status }}."
