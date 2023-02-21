@@ -1,6 +1,10 @@
 name: Lijing's Personal Website GitHub Actions
 run-name: ${{ github.actor }} is updating Lijing's Personal Website 🚀
-on: [push]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 jobs:
   Deploy-Website:
     runs-on: ubuntu-latest
